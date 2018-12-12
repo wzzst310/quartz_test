@@ -3,10 +3,11 @@ package cn.wolfcode.quartz_test.sort;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Data
-public class Car implements Comparable<Car> {
+public class Car implements Serializable, Comparable<Car> {
 
 
     public Car(String name, String productId, List<Bus> buses) {

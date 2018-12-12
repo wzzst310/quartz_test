@@ -2,11 +2,12 @@ package cn.wolfcode.quartz_test.sort;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 @Data
-public class Bus implements Comparable<Bus> {
+public class Bus implements Serializable, Comparable<Bus> {
     public Bus(String name, String date) {
         this.name = name;
         this.date = date;
