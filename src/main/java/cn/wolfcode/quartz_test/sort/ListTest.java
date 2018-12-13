@@ -40,11 +40,9 @@ public class ListTest {
         String s1 = JSON.toJSONString(list);
         String s = "[{\"buses\":[{\"date\":\"2019-12-31\",\"name\":\"bus11\"},{\"date\":\"1966-12-11\",\"name\":\"bus11\"},{\"date\":\"2099-03-14\",\"name\":\"bus11\"}],\"name\":\"货车\",\"productId\":\"产品2\"},{\"buses\":[{\"date\":\"1997-01-01\",\"name\":\"bus11\"},{\"date\":\"2008-05-12\",\"name\":\"bus11\"},{\"date\":\"2008-08-08\",\"name\":\"bus11\"}],\"name\":\"汽车\",\"productId\":\"产品3\"},{\"buses\":[{\"date\":\"1995-11-11\",\"name\":\"bus11\"},{\"date\":\"2017-10-11\",\"name\":\"bus11\"},{\"date\":\"2016-09-11\",\"name\":\"bus11\"}],\"name\":\"卡车\",\"productId\":\"产品1\"}]\n";
         List<Car> cars = JSON.parseArray(s, Car.class);
+        cars.stream().sorted(Car::compareTo).forEach(car -> car.setBuses(car.getBuses().stream().sorted(Bus::compareTo).collect(Collectors.toList())));
 
-        //List<Car> newList = cars.stream().sorted(Comparator.comparing(Car::getProductId)).collect(Collectors.toList());
-        List<Car> newList = cars.stream().sorted(Car::compareTo).collect(Collectors.toList());
-        newList.stream().forEach(car -> car.setBuses(car.getBuses().stream().sorted(Bus::compareTo).collect(Collectors.toList())));
-        System.out.println(JSON.toJSONString(newList));
+        System.out.println(JSON.toJSONString(cars));
 
 
     }
